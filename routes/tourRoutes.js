@@ -7,6 +7,9 @@ router
   .route('/top-5-cheapest')
   .get(tourController.aliasTopTour, tourController.getAllTours);
 
+router.route('/tour-stats').get(tourController.getTourStats);
+router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
+
 //prettier-ignore
 router
   .route('/')
