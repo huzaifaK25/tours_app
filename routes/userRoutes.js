@@ -5,6 +5,7 @@ import * as authController from '../controllers/authController.js';
 const router = express.Router();
 
 router.post('/signup', authController.signUp);
+router.post('/login', authController.logIn);
 
 // BELOW ROUTES IN RESTful FORMAT
 //prettier-ignore
