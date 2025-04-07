@@ -8,6 +8,21 @@ router.post('/signup', authController.signUp);
 router.post('/login', authController.logIn);
 router.post('/forgot-password', authController.forgotPassword);
 router.patch('/reset-password/:token', authController.resetPassword);
+router.patch(
+  '/update-my-password',
+  authController.protect,
+  authController.updatePassword,
+);
+router.patch(
+  '/update-my-data',
+  authController.protect,
+  userController.updateMyData,
+);
+router.delete(
+  '/delete-my-account',
+  authController.protect,
+  userController.deleteMyAcc,
+);
 
 // BELOW ROUTES IN RESTful FORMAT
 //prettier-ignore
