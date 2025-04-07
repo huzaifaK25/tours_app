@@ -10,6 +10,7 @@ import hpp from 'hpp';
 // IMPORTING THE ROUTERS
 import tourRouter from './routes/tourRoutes.js';
 import userRouter from './routes/userRoutes.js';
+import reviewRouter from './routes/reviewRoutes.js';
 
 // Creating Express App
 const app = express();
@@ -54,6 +55,7 @@ app.use(express.static('./public'));
 // MOUNTING THE ROUTER
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/reviews', reviewRouter);
 // Route for undefined routes (ERROR HANDELING)
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot fine URL:${req.baseUrl}`, 404));
