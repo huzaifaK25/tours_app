@@ -2,6 +2,7 @@ import Tour from '../models/tourModel.js';
 import APIfeatures from '../utils/apiFeatures.js';
 import AppError from '../utils/appError.js';
 import catchAsync from '../utils/catchAsync.js';
+import factory from './handelersFactory.js';
 
 // Route Handelers
 export const aliasTopTour = function (req, res, next) {
@@ -57,34 +58,35 @@ export const createTour = catchAsync(async function (req, res, next) {
   });
 });
 
-export const updateTour = catchAsync(async function (req, res, next) {
-  // PATCH TO DB
-  const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidatiors: true,
-  });
-  if (!tour) {
-    return next(new AppError('No tour found with this ID', 404));
-  }
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour,
-    },
-  });
-});
-
-export const deleteTour = catchAsync(async function (req, res, next) {
-  // DELETE FROM DB
-  const tour = await Tour.findByIdAndDelete(req.params.id);
-  if (!tour) {
-    return next(new AppError('No tour found with this ID', 404));
-  }
-  res.status(204).json({
-    status: 'success',
-    data: null,
-  });
-});
+// export const updateTour = catchAsync(async function (req, res, next) {
+//   // PATCH TO DB
+//   const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+//     new: true,
+//     runValidatiors: true,
+//   });
+//   if (!tour) {
+//     return next(new AppError('No tour found with this ID', 404));
+//   }
+//   res.status(200).json({
+//     status: 'success',
+//     data: {
+//       tour,
+//     },
+//   });
+// });
+export const updateTour = factory.updateOne(Tour);
+// export const deleteTour = catchAsync(async function (req, res, next) {
+//   // DELETE FROM DB
+//   const tour = await Tour.findByIdAndDelete(req.params.id);
+//   if (!tour) {
+//     return next(new AppError('No tour found with this ID', 404));
+//   }
+//   res.status(204).json({
+//     status: 'success',
+//     data: null,
+//   });
+// });
+export const deleteTour = factory.deleteOne(Tour);
 
 export const getTourStats = catchAsync(async function (req, res, next) {
   // MONGO AGGREGATION PIPELINE

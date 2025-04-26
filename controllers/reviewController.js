@@ -1,5 +1,6 @@
 import Review from '../models/reviewModel.js';
 import catchAsync from '../utils/catchAsync.js';
+import factory from './handelersFactory.js';
 
 export const getAllReviews = catchAsync(async function (req, res, next) {
   let filter = {};
@@ -29,3 +30,5 @@ export const createReview = catchAsync(async function (req, res, next) {
     },
   });
 });
+
+export const deleteReview = factory.deleteOne(Review);

@@ -1,6 +1,7 @@
 import User from '../models/userModel.js';
 import AppError from '../utils/appError.js';
 import catchAsync from '../utils/catchAsync.js';
+import factory from './handelersFactory.js';
 
 const filterObj = function (obj, ...allowedFields) {
   const newObj = {};
@@ -76,9 +77,4 @@ export const updateUser = function (req, res) {
   });
 };
 
-export const deleteUser = function (req, res) {
-  res.status(500).json({
-    status: 'errr',
-    message: 'Route Undefined',
-  });
-};
+export const deleteUser = factory.deleteOne(User);
