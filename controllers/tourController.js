@@ -1,6 +1,6 @@
 import Tour from '../models/tourModel.js';
 import catchAsync from '../utils/catchAsync.js';
-import factory from './handelersFactory.js';
+import * as factory from './handelersFactory.js';
 // import AppError from '../utils/appError.js';
 
 // Route Handelers
